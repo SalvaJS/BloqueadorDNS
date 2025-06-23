@@ -63,8 +63,8 @@ while(True):
         copiaRollBack()
         while 'salir' not in entrada.lower():
             entrada = entrada.split()
-            esta = False
             for dns in entrada:
+                esta = False
                 with open(ficheroHost, 'r') as hosts:
                     contenidoHosts = hosts.readlines()
                 with open(ficheroHost, 'w') as hosts:
@@ -74,10 +74,11 @@ while(True):
                             esta = True
                         else:
                             hosts.write(linea)
-            if esta == False:
-                print(f"El DNS {dns} no se encuentra en la lista. Puede añadir más o escribir 'salir' para volver al menú:")
-            else:
-                print("Se han eliminado de la lista los DNS correctamente. Puede añadir más o escribir 'salir' para volver al menú:")
+                if not esta:
+                    print(f"El DNS {dns} no está en la lista.")
+                else:
+                    print(f"El DNS {dns} se ha eliminado de la lista correctamente.")
+            print("Se han eliminado de la lista los DNS correctamente. Puede añadir más o escribir 'salir' para volver al menú:")
             entrada = input()
                 
 
